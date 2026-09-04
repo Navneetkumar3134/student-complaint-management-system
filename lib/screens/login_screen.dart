@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
- const LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +33,10 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 30),
 
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Email',
-                border: const OutlineInputBorder(),
-                prefixIcon: const Icon(Icons.email),
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.email),
               ),
             ),
 
@@ -43,10 +44,10 @@ class LoginScreen extends StatelessWidget {
 
             TextField(
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Password',
-                border: const OutlineInputBorder(),
-                prefixIcon: const Icon(Icons.lock),
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.lock),
               ),
             ),
 
@@ -67,7 +68,14 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 15),
 
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RegisterScreen(),
+                  ),
+                );
+              },
               child: const Text('Create an account'),
             ),
           ],
