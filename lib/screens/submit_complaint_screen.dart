@@ -8,8 +8,51 @@ class SubmitComplaintScreen extends StatefulWidget {
       _SubmitComplaintScreenState();
 }
 
-class _SubmitComplaintScreenState extends State<SubmitComplaintScreen> {
+class _SubmitComplaintScreenState
+    extends State<SubmitComplaintScreen> {
+  final TextEditingController titleController =
+      TextEditingController();
+
+  final TextEditingController descriptionController =
+      TextEditingController();
+
   String selectedCategory = 'Academic';
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
+  void submitComplaint() {
+    if (titleController.text.trim().isEmpty ||
+        descriptionController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Please fill in all required fields.',
+          ),
+        ),
+      );
+      return;
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Complaint submitted successfully!',
+        ),
+      ),
+    );
+
+    titleController.clear();
+    descriptionController.clear();
+
+    setState(() {
+      selectedCategory = 'Academic';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +61,7 @@ class _SubmitComplaintScreenState extends State<SubmitComplaintScreen> {
         title: const Text('Submit Complaint'),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -33,6 +76,7 @@ class _SubmitComplaintScreenState extends State<SubmitComplaintScreen> {
             const SizedBox(height: 25),
 
             TextField(
+              controller: titleController,
               decoration: const InputDecoration(
                 labelText: 'Complaint Title',
                 hintText: 'Enter complaint title',
@@ -84,6 +128,7 @@ class _SubmitComplaintScreenState extends State<SubmitComplaintScreen> {
             const SizedBox(height: 18),
 
             TextField(
+              controller: descriptionController,
               maxLines: 6,
               decoration: const InputDecoration(
                 labelText: 'Description',
@@ -99,13 +144,7 @@ class _SubmitComplaintScreenState extends State<SubmitComplaintScreen> {
               width: double.infinity,
               height: 52,
               child: ElevatedButton.icon(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Complaint submitted successfully!'),
-                    ),
-                  );
-                },
+                onPressed: submitComplaint,
                 icon: const Icon(Icons.send),
                 label: const Text(
                   'Submit Complaint',
