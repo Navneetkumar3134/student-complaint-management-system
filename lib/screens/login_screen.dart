@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'register_screen.dart';
+import 'student_dashboard.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -57,7 +58,14 @@ class LoginScreen extends StatelessWidget {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                   MaterialPageRoute(
+                     builder: (context) => const StudentDashboard(),
+                  ),
+                );
+              },
                 child: const Text(
                   'Login',
                   style: TextStyle(fontSize: 18),
