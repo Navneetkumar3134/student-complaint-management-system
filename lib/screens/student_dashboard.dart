@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'submit_complaint_screen.dart';
+import 'my_complaints_screen.dart';
 
 class StudentDashboard extends StatelessWidget {
   const StudentDashboard({super.key});
@@ -68,9 +69,15 @@ class StudentDashboard extends StatelessWidget {
                     context,
                     Icons.list_alt,
                     'My Complaints',
-                    () {},
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyComplaintsScreen(),
+                        ),
+                      );
+                    },
                   ),
-
                   _dashboardCard(
                     context,
                     Icons.pending_actions,
