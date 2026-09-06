@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'submit_complaint_screen.dart';
 import 'my_complaints_screen.dart';
 import 'login_screen.dart';
+import 'filtered_complaints_screen.dart';
 
 class StudentDashboard extends StatelessWidget {
   const StudentDashboard({super.key});
@@ -86,19 +87,39 @@ class StudentDashboard extends StatelessWidget {
                     },
                   ),
 
-                  _dashboardCard(
-                    context,
-                    Icons.pending_actions,
-                    'Pending',
-                    () {},
-                  ),
+                 _dashboardCard(
+                   context,
+                   Icons.pending_actions,
+                   'Pending',
+                   () {
+                     Navigator.push(
+                       context,
+                       MaterialPageRoute(
+                         builder: (context) =>
+                             const FilteredComplaintsScreen(
+                           status: 'Pending',
+                         ),
+                      ),
+                    );
+                  },
+                ),
 
-                  _dashboardCard(
-                    context,
-                    Icons.check_circle,
-                    'Resolved',
-                    () {},
-                  ),
+                 _dashboardCard(
+                   context,
+                   Icons.check_circle,
+                   'Resolved',
+                   () {
+                     Navigator.push(
+                       context,
+                       MaterialPageRoute(
+                         builder: (context) =>
+                             const FilteredComplaintsScreen(
+                           status: 'Resolved',
+                         ),
+                      ),
+                    );
+                   },
+                 ),
                 ],
               ),
             ),
