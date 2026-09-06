@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../models/complaint.dart';
+import '../services/complaint_service.dart';
 
 class SubmitComplaintScreen extends StatefulWidget {
   const SubmitComplaintScreen({super.key});
@@ -8,8 +10,7 @@ class SubmitComplaintScreen extends StatefulWidget {
       _SubmitComplaintScreenState();
 }
 
-class _SubmitComplaintScreenState
-    extends State<SubmitComplaintScreen> {
+class _SubmitComplaintScreenState extends State<SubmitComplaintScreen> {
   final TextEditingController titleController =
       TextEditingController();
 
@@ -30,19 +31,26 @@ class _SubmitComplaintScreenState
         descriptionController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text(
-            'Please fill in all required fields.',
-          ),
+          content: Text('Please fill in all required fields.'),
         ),
       );
       return;
     }
 
+    final complaint = Complaint(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      title: titleController.text.trim(),
+      category: selectedCategory,
+      description: descriptionController.text.trim(),
+      status: 'Pending',
+      createdAt: DateTime.now(),
+    );
+
+    ComplaintService.addComplaint(complaint);
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text(
-          'Complaint submitted successfully!',
-        ),
+        content: Text('Complaint submitted successfully!'),
       ),
     );
 

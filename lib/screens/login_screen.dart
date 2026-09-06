@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'register_screen.dart';
 import 'student_dashboard.dart';
+import 'admin_dashboard.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -61,13 +62,36 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                   MaterialPageRoute(
-                     builder: (context) => const StudentDashboard(),
-                  ),
-                );
-              },
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const StudentDashboard(),
+                    ),
+                  );
+                },
                 child: const Text(
-                  'Login',
+                  'Student Login',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: OutlinedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const AdminDashboard(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Admin Login',
                   style: TextStyle(fontSize: 18),
                 ),
               ),
@@ -80,7 +104,8 @@ class LoginScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const RegisterScreen(),
+                    builder: (context) =>
+                        const RegisterScreen(),
                   ),
                 );
               },
