@@ -3,7 +3,7 @@ class Complaint {
   final String title;
   final String category;
   final String description;
-  final String status;
+  String status;
   final DateTime createdAt;
 
   Complaint({

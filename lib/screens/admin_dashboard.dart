@@ -3,8 +3,14 @@ import '../services/complaint_service.dart';
 import 'all_complaints_screen.dart';
 import 'login_screen.dart';
 
-class AdminDashboard extends StatelessWidget {
+class AdminDashboard extends StatefulWidget {
   const AdminDashboard({super.key});
+
+  @override
+  State<AdminDashboard> createState() => _AdminDashboardState();
+}
+
+class _AdminDashboardState extends State<AdminDashboard> {
 
   @override
   Widget build(BuildContext context) {
@@ -96,26 +102,28 @@ class AdminDashboard extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const AllComplaintsScreen(),
-                    ),
-                  );
-                },
-                icon: const Icon(Icons.list_alt),
-                label: const Text(
-                  'View All Complaints',
-                  style: TextStyle(fontSize: 17),
-                ),
-              ),
-            ),
+           SizedBox(
+             width: double.infinity,
+             height: 55,
+             child: ElevatedButton.icon(
+               onPressed: () async {
+                 await Navigator.push(
+                   context,
+                   MaterialPageRoute(
+                    builder: (context) =>
+                        const AllComplaintsScreen(),
+                  ),
+                );
+
+                setState(() {});
+              },
+              icon: const Icon(Icons.list_alt),
+              label: const Text(
+                'View All Complaints',
+                style: TextStyle(fontSize: 17),
+               ),
+             ),
+           ),
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/complaint.dart';
 import '../services/complaint_service.dart';
-import 'complaint_details_screen.dart';
+import 'admin_complaint_details_screen.dart';
 
 class AllComplaintsScreen extends StatelessWidget {
   const AllComplaintsScreen({super.key});
@@ -76,7 +76,7 @@ class AllComplaintsScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      ComplaintDetailsScreen(
+                                      AdminComplaintDetailsScreen(
                                     complaint: complaint,
                                   ),
                                 ),
