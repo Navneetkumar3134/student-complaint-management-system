@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/complaint_service.dart';
 import 'all_complaints_screen.dart';
+import 'login_screen.dart';
 
 class AdminDashboard extends StatelessWidget {
   const AdminDashboard({super.key});
@@ -25,8 +26,13 @@ class AdminDashboard extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pop(context);
-            },
+             Navigator.pushReplacement(
+               context,
+               MaterialPageRoute(
+                 builder: (context) => const LoginScreen(),
+               ),
+             );
+           },
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
           ),
