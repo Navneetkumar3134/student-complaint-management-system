@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'submit_complaint_screen.dart';
 import 'my_complaints_screen.dart';
+import 'login_screen.dart';
 
 class StudentDashboard extends StatelessWidget {
   const StudentDashboard({super.key});
@@ -13,7 +14,12 @@ class StudentDashboard extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginScreen(),
+                ),
+              );
             },
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
@@ -73,11 +79,13 @@ class StudentDashboard extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const MyComplaintsScreen(),
+                          builder: (context) =>
+                              const MyComplaintsScreen(),
                         ),
                       );
                     },
                   ),
+
                   _dashboardCard(
                     context,
                     Icons.pending_actions,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/complaint_service.dart';
 import 'all_complaints_screen.dart';
 
 class AdminDashboard extends StatelessWidget {
@@ -6,6 +7,18 @@ class AdminDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final complaints = ComplaintService.complaints;
+
+    final totalComplaints = complaints.length;
+
+    final pendingComplaints = complaints
+        .where((complaint) => complaint.status == 'Pending')
+        .length;
+
+    final resolvedComplaints = complaints
+        .where((complaint) => complaint.status == 'Resolved')
+        .length;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Admin Dashboard'),
@@ -49,23 +62,27 @@ class AdminDashboard extends StatelessWidget {
                   child: _buildStatCard(
                     icon: Icons.inbox,
                     title: 'Total',
-                    value: '0',
+                    value: totalComplaints.toString(),
                   ),
                 ),
+
                 const SizedBox(width: 12),
+
                 Expanded(
                   child: _buildStatCard(
                     icon: Icons.pending_actions,
                     title: 'Pending',
-                    value: '0',
+                    value: pendingComplaints.toString(),
                   ),
                 ),
+
                 const SizedBox(width: 12),
+
                 Expanded(
                   child: _buildStatCard(
                     icon: Icons.check_circle,
                     title: 'Resolved',
-                    value: '0',
+                    value: resolvedComplaints.toString(),
                   ),
                 ),
               ],
@@ -116,7 +133,9 @@ class AdminDashboard extends StatelessWidget {
               icon,
               size: 30,
             ),
+
             const SizedBox(height: 8),
+
             Text(
               value,
               style: const TextStyle(
@@ -124,7 +143,9 @@ class AdminDashboard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+
             const SizedBox(height: 4),
+
             Text(
               title,
               style: const TextStyle(
